@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+</head>
+<body>
+<input id="input-task">
+<button id="add-task-button" onclick="addTask()">Add task</button>
+<ul id="task-list">
+    <li>
+        <input type="checkbox" onchange="done(this)">
+        <span class="task">Task 1</span>
+        <button class="delete-btn" onclick="deleteTask(this)">delete</button>
+    </li>
+    <li>
+        <input type="checkbox" onchange="done(this)">
+        <span class="task">Task 1</span>
+        <button class="delete-btn" onclick="deleteTask(this)">delete</button>
+    </li>
+    <li>
+        <input type="checkbox" onchange="done(this)">
+        <span class="task">Task 1</span>
+        <button class="delete-btn" onclick="deleteTask(this)">delete</button>
+    </li>
+</ul>
+</body>
+</html>
+
+<style>
+    .done{
+        text-decoration: line-through;
+    }
+</style>
+
+<script>
+    function addTask() {
+        if (!document.querySelector("#input-task").value) return;
+        let li = document.createElement('li');
+        li.innerHTML = '<input type="checkbox" onchange="done(this)">' +
+            '<span class="task">' + document.querySelector("#input-task").value +'</span>' +
+            '<button class="delete-btn" onclick="deleteTask(this)">delete</button>';
+        document.querySelector("#task-list").append(li);
+        document.querySelector("#input-task").value = '';
+    }
+
+    function deleteTask(e) {
+        e.parentNode.remove();
+    }
+
+    function done(e){
+        e.nextElementSibling.classList.toggle("done");
+    }
+
+</script>
